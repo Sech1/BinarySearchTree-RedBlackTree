@@ -34,14 +34,16 @@ class Node:
         if search < self.val:
             # If null(None) return negative.
             if self.left is None:
-                return str(search) + " Searched Term Not Found."
+                print(" Searched Term Not Found.")
+                return str(search)
             # Else check search again.
             return self.left.returnVal(search)
         # Check right node if search > val
         elif search > self.val:
             # If left is Null(None) return negative.
             if self.right is None:
-                return str(search) + " Searched Term Not Found."
+                print(" Searched Term Not Found.")
+                return str(search)
             # Else check search again
             return self.right.returnVal(search)
         else:

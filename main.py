@@ -6,9 +6,110 @@ from bst import *
 from rbt import *
 from util import *
 
+allPermList = ["15K", "30K", "45K", "60K", "75K", "90K", "105K", "120K", "135K", "150K"]
+types = ["Perm", "Sorted"]
 
 def main():
-    handle_thread(redblack_search, '15K', 'Perm', 'BIMORPHEMIC')
+    sys.setrecursionlimit(150000)
+
+    exitVar = False
+    listType = ""
+    while not exitVar:
+        print("1. Binary Search Tree")
+        print("2. Red Black Tree")
+        print("3. RUN ALL! (Run All Trees With all Lists)")
+        while True:
+            try:
+                execType = int(input("Which routine to run? (1-3)"))
+                if 3 >= execType > 0:
+                    break
+            except:
+                print("Please type an integer (1-3)")
+
+        if execType != 3:
+            print("1. Permutations")
+            print("2. Sorted")
+            while True:
+                try:
+                    listsToUse = int(input("Which list to use (1-2)"))
+                    if listsToUse == 1:
+                        listType = 'Perm'
+                    elif listsToUse == 2:
+                        listType = 'Sorted'
+                    if 2 >= listsToUse > 0:
+                        break
+                except:
+                    print("Please type an integer (1-2)")
+
+            print("1. 15K")
+            print("2. 30K")
+            print("3. 45K")
+            print("4. 60K")
+            print("5. 75K")
+            print("6. 90K")
+            print("7. 105K")
+            print("8. 120K")
+            print("9. 135")
+            print("10. 150K")
+            print("11. RUN ALL")
+            while True:
+                try:
+                    length = int(input("Which size to run? (1-11)"))
+                    if 11 >= length > 0:
+                        break
+                except:
+                    print("Please type an integer (1-11)")
+            while True:
+                try:
+                    search = str(input("What word to search?"))
+                    if search.isalpha():
+                        break
+                except:
+                    print("Enter a valid string")
+
+            if execType == 1:
+                if listsToUse == 1 or 2:
+                    sys.stdout.flush()
+                    if(length > 10):
+                        for x in range(len(allPermList)):
+                            handle_thread(binary_search, allPermList[x], listType, search)
+                    else:
+                        handle_thread(binary_search, allPermList[length-1], listType, search)
+            elif execType == 2:
+                if listsToUse == 1 or 2:
+                    if(length > 10):
+                        for x in range(len(allPermList)):
+                            handle_thread(redblack_search, allPermList[x], listType, search)
+                    else:
+                        handle_thread(redblack_search, allPermList[length-1], listType, search)
+
+            print("Exit? \n")
+            while True:
+                try:
+                    exitInput = int(input("1. Yes \n2. No\n"))
+                    if exitInput == 1:
+                        exitVar = True
+                        break
+                    elif exitInput == 2:
+                        break
+                except:
+                    print("Please type and integer (1,2)")
+        elif execType == 3:
+            while True:
+                try:
+                    search = str(input("What word to search?"))
+                    if search.isalpha():
+                        break
+                except:
+                    print("Enter a valid string")
+
+            for x in range(len(types)):
+                for i in range(len(allPermList)):
+                    handle_thread(binary_search, allPermList[i], types[x], search)
+            for x in range(len(types)):
+                for i in range(len(allPermList)):
+                    handle_thread(redblack_search, allPermList[i], types[x], search)
+
 
 
 def handle_thread(search_function, length, list_type, search):
