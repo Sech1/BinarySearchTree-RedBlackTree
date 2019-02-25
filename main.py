@@ -9,8 +9,9 @@ from util import *
 allPermList = ["15K", "30K", "45K", "60K", "75K", "90K", "105K", "120K", "135K", "150K"]
 types = ["Perm", "Sorted"]
 
+
 def main():
-    sys.setrecursionlimit(150000)
+    sys.setrecursionlimit(15000)
 
     exitVar = False
     listType = ""
@@ -70,18 +71,18 @@ def main():
             if execType == 1:
                 if listsToUse == 1 or 2:
                     sys.stdout.flush()
-                    if(length > 10):
+                    if (length > 10):
                         for x in range(len(allPermList)):
                             handle_thread(binary_search, allPermList[x], listType, search)
                     else:
-                        handle_thread(binary_search, allPermList[length-1], listType, search)
+                        handle_thread(binary_search, allPermList[length - 1], listType, search)
             elif execType == 2:
                 if listsToUse == 1 or 2:
-                    if(length > 10):
+                    if (length > 10):
                         for x in range(len(allPermList)):
                             handle_thread(redblack_search, allPermList[x], listType, search)
                     else:
-                        handle_thread(redblack_search, allPermList[length-1], listType, search)
+                        handle_thread(redblack_search, allPermList[length - 1], listType, search)
 
             print("Exit? \n")
             while True:
@@ -109,7 +110,6 @@ def main():
             for x in range(len(types)):
                 for i in range(len(allPermList)):
                     handle_thread(redblack_search, allPermList[i], types[x], search)
-
 
 
 def handle_thread(search_function, length, list_type, search):
