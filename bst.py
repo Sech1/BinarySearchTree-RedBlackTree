@@ -27,3 +27,32 @@ class Node:
                     self.right.insert_node(val)
         else:
             self.val = val
+
+    # Function returns a requested value in the tree structure.
+    def returnVal(self, search):
+        # Search left node if search < val
+        if search < self.val:
+            # If null(None) return negative.
+            if self.left is None:
+                return str(search) + " Searched Term Not Found."
+            # Else check search again.
+            return self.left.returnVal(search)
+        # Check right node if search > val
+        elif search > self.val:
+            # If left is Null(None) return negative.
+            if self.right is None:
+                return str(search) + " Searched Term Not Found."
+            # Else check search again
+            return self.right.returnVal(search)
+        else:
+            # Else val found.
+            print(str(self.val) + " Is Found")
+
+    # Prints entire tree to console (With a small change) or file.
+    def outputTree(self, file):
+        if self.left:
+            self.left.outputTree(file)
+        #print(self.val)
+        file.write(self.val + "\n")
+        if self.right:
+            self.right.outputTree(file)
