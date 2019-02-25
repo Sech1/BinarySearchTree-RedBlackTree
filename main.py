@@ -13,6 +13,7 @@ types = ["Perm", "Sorted"]
 def main():
     sys.setrecursionlimit(15000)
 
+    search = ""
     exitVar = False
     listType = ""
     while not exitVar:
@@ -55,18 +56,13 @@ def main():
             print("11. RUN ALL")
             while True:
                 try:
-                    length = int(input("Which size to run? (1-11)"))
+                    length = int(input("Which size to run? (1-11)\n"))
                     if 11 >= length > 0:
                         break
                 except:
-                    print("Please type an integer (1-11)")
-            while True:
-                try:
-                    search = str(input("What word to search?"))
-                    if search.isalpha():
-                        break
-                except:
-                    print("Enter a valid string")
+                    print("Please type an integer (1-11)\n")
+
+            search = str(input("What word to search?\n"))
 
             if execType == 1:
                 if listsToUse == 1 or 2:
@@ -94,15 +90,9 @@ def main():
                     elif exitInput == 2:
                         break
                 except:
-                    print("Please type and integer (1,2)")
+                    print("Please type and integer (1,2)\n")
         elif execType == 3:
-            while True:
-                try:
-                    search = str(input("What word to search?"))
-                    if search.isalpha():
-                        break
-                except:
-                    print("Enter a valid string")
+            search = str(input("What word to search? \n"))
 
             for x in range(len(types)):
                 for i in range(len(allPermList)):
